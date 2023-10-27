@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+PaysSearch
+{% endblock %}
+
+{% block content %}
+
+<style>
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    font-size: 10px;
+}
+
+input[type="text"] {
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 4px 4px 4px 4px;
+    border: 3px solid #ccc;
+}
+
+input[type="text"]::placeholder {
+    color:#000;
+    opacity: 1;
+}
+</style>
+
+<form method="GET">
+    <input id="recherche" onkeyup="search_pays()" type="text" name="recherche" placeholder="Search Pays">
+</form>
+<ol id='list'>
+    {% for Pays in AllPays %}
+    <p><a class="pays" href="/pays/{{Pays}}">{{Pays}}</a></p>
+    {% endfor %}
+</ol>
+    
+<script>
+function search_pays() {
+    let input = document.getElementById('recherche').value
+    input=input.toLowerCase();
+    let x = document.getElementsByClassName('pays');
+    
+    for (i = 0; i < x.length; i++) { 
+        if (!x[i].innerHTML.toLowerCase().includes(input)) {
+            x[i].style.display="none";
+        }
+        else {
+            x[i].style.display="list-item";                 
+        }
+    }
+}
+</script>
+
+
+{% endblock %}

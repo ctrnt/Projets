@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ auteur }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ auteur }}</h1>
+    <p><strong>Email :</strong>
+        {% for email in email_list %}
+        <a href="mailto:{{email}}">{{ email }}</a> ;
+        {% endfor %}
+    </p>
+    <p><strong>{{ count.0 }}</strong>
+        {% for article in articles %}
+        <a href='/article/{{article}}'>{{ article.titre }}</a> ;
+        {% endfor %}
+    </p>
+    <p><strong>{{ count.1 }}</strong>
+        {% for labo in labos %}
+        <a href='/labo/{{labo}}'>{{ labo }}</a> ;
+        {% endfor %}
+    </p>
+{% endblock %}

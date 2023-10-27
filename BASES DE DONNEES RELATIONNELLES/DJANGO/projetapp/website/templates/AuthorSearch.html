@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+AuthorSearch
+{% endblock %}
+
+{% block content %}
+
+<style>
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    font-size: 10px;
+}
+
+input[type="text"] {
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 4px 4px 4px 4px;
+    border: 3px solid #ccc;
+    margin-left: 5px;
+}
+
+input[type="text"]::placeholder {
+    color:#000;
+    opacity: 1;
+}
+
+button[type="submit"] {
+    padding: 8px 16px;
+    background-color: #ccc;
+    border: 3px solid #ccc;
+    border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+</style>
+
+<form method="GET">
+    <label for="prenom"></label>
+    <input id="prenom" type="text" name="prenom" placeholder="Search Prenom">
+    <label for="nom"></label>
+    <input id="nom" type="text" name="nom" placeholder="Search Nom">
+    <button type="submit">Search</button>
+</form>
+<p>
+    <a>{{ count }} {{ temps }}</a>
+    <p><a href='/auteur/{{ auteur.prenom }}/{{ auteur.nom }}'>{{ auteur }}</a></p>
+    {% for auteur in auteurs %}
+    <p><a href='/auteur/{{ auteur.prenom }}/{{ auteur.nom }}'>{{ auteur }}</a></p>
+    {% endfor %}
+</p>
+
+{% endblock %}

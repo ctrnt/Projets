@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+SearchBar
+{% endblock %}
+
+{% block content %}
+<style>
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    font-size: 10px;
+}
+
+input[type="text"] {
+    justify-content: center;
+    padding: 8px 16px;
+    border: 3px solid #ccc;
+    border-radius: 4px 0px 0px 4px;
+}
+
+input[type="text"]::placeholder {
+    opacity: 1;
+}
+
+select {
+    padding: 8px 16px;
+    background-color: #ccc;
+    border: 3px solid #ccc;
+    border-radius: 0px 4px 4px 0px;
+    cursor: pointer;
+}
+
+button[type="submit"] {
+    padding: 8px 16px;
+    background-color: #ccc;
+    border: 3px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+</style>
+
+<form method="GET">
+    <label for="recherche"></label>
+    <input id="recherche" type="text" name="recherche"  placeholder="Search">
+    <label for="choix"></label>
+    <select name="choix" id="choix">
+        <option value="titre">Titre</option>
+        <option value="doi">DOI</option>
+    </select> 
+    <button type="submit">Search</button>
+</form>
+<p>
+    <a>{{ count }} {{temps}}</a>
+    {% for titre in titres %}
+    <p><a href='/article/{{titre}}'>{{ titre.titre }}</a></p>
+    {% endfor %}
+    <p><a href='/article/{{article}}'>{{ article.titre }}</a></p>
+</p>
+
+{% endblock %}

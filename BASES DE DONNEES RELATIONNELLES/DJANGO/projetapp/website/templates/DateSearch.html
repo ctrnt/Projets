@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+DateSearch
+{% endblock %}
+
+{% block content %}
+
+<style>
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    font-size: 10px;
+}
+
+label[for="debut"] {
+    align-items: center;
+    font-size: 15px;
+}
+
+label[for="fin"] {
+    align-items: center;
+    font-size: 15px;
+}
+
+input[type="date"] {
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 4px 4px 4px 4px;
+    border: 3px solid #ccc;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+input[type="text"] {
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 4px 4px 4px 4px;
+    border: 3px solid #ccc;
+}
+
+input[type="text"]::placeholder {
+    color:#000;
+    opacity: 1;
+}
+
+select {
+    padding: 8px 16px;
+    background-color: #ccc;
+    border: 3px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+#choix_hist {
+    display:none
+}
+
+button[type="submit"] {
+    padding: 8px 16px;
+    background-color: #ccc;
+    border: 3px solid #ccc;
+    border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+img {
+    display: block;
+    margin: auto
+}
+</style>
+
+<form method="GET">
+<label for="debut">Date de départ:</label>
+<input type="date" id="debut" name="debut">
+<label for="fin">Date de fin:</label>
+<input type="date" id="fin" name="fin">
+<select name="choix" id="choix">
+    <option value="date_exacte">Date Exacte</option>
+    <option value="année">Année</option>
+    <option value="histogramme">Histogramme</option>
+</select>
+<select name="choix_hist" id="choix_hist">
+    <option value="jour">Jour</option>
+    <option value="semaine">Semaine</option>
+    <option value="mois">Mois</option>
+    <option value="année">Année</option>
+</select>
+<input id="titre" type="text" name="titre" placeholder="Search Titre">
+<button type="submit">Search</button>
+</form>
+
+<script>
+    const choix = document.getElementById('choix');
+    const choixHist = document.getElementById('choix_hist');
+    const titre = document.getElementById('titre')
+
+    choix.addEventListener('change', function() {
+        if (choix.value == 'histogramme') {
+            titre.style.display = 'none';
+            choixHist.style.display = 'inline-block'
+        }
+        else {
+            titre.style.display = 'inline-block';
+            choixHist.style.display = 'none'
+        }
+    })
+</script>
+
+<p>
+    <a>{{ count }} {{temps}}</a>
+    {% for article in articles %}
+    <p><a href='/article/{{article.doi}}'>{{ article.titre }}</a></p>
+    {% endfor %}
+</p>
+<img src="{% static 'barchart.png' %}">
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ labo }}
+{% endblock %}
+
+{% block content %}
+<h1>{{ labo }}</h1>
+<p><strong>{{ count.0 }}</strong>
+    {% for article in articles %}
+    <a href='/article/{{article}}'>{{ article.titre }}</a> ;
+    {% endfor %}
+</p>
+<p><strong>{{ count.1 }}</strong>
+    {% for auteur in auteurs %}
+    <a href='/auteur/{{auteur.prenom}}/{{auteur.nom}}'>{{ auteur }}</a> ;
+    {% endfor %}
+</p>
+<p><strong>{{ count.2 }}</strong>
+    {% for pays_i in pays %}
+    <a href='/pays/{{pays_i}}'>{{ pays_i }}</a> ;
+    {% endfor %}
+</p>
+{% endblock %}

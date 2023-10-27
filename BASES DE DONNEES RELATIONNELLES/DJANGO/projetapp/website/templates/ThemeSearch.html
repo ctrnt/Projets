@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+ThemeSearch
+{% endblock %}
+
+{% block content %}
+
+<style>
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    font-size: 10px;
+}
+
+input[type="text"] {
+    justify-content: center;
+    padding: 8px 16px;
+    border-radius: 4px 4px 4px 4px;
+    border: 3px solid #ccc;
+    margin-left: 5px;
+}
+
+input[type="text"]::placeholder {
+    color:#000;
+    opacity: 1;
+}
+
+select {
+    padding: 8px 16px;
+    background-color: #ccc;
+    border: 3px solid #ccc;
+    border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+button[type="submit"] {
+    padding: 8px 16px;
+    background-color: #ccc;
+    border: 3px solid #ccc;
+    border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+</style>
+
+<form method="GET">
+    <label for="theme"></label>
+    <select id="theme" name="theme">
+        {% for Theme in AllThemes %}
+        <option>{{ Theme }}</option>
+        {% endfor %}
+    </select>
+    <label for="sous_theme"></label>
+    <select id="sous_theme" name="sous_theme">
+        {% for Sous_Theme in AllSous_Themes %}
+        <option>{{ Sous_Theme }}</option>
+        {% endfor %}
+    </select>
+    <input id="titre" type="text" name="titre" placeholder="Search Titre">
+    <button type="submit">Search</button>
+</form>
+<p>
+    <a>{{ count }} {{temps}}</a>
+    {% for article in articles %}
+    <p><a href='/article/{{article}}'>{{ article.titre }}</a></p>
+    {% endfor %}
+</p>
+
+{% endblock %}

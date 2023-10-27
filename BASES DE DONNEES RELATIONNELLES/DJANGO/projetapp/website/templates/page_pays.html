@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ pays }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ pays }}</h1>
+    <p><strong>{{ count }}</strong>
+        {% for labo in labos %}
+        <a href='/labo/{{labo}}'>{{ labo }}</a><br><br>
+        {% endfor %}
+    </p>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ journal }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ journal }}</h1>
+    <p><strong>{{ count }}</strong>
+        {% for article in articles %}
+        <a href='/article/{{article}}'>{{ article.titre }}</a><br><br>
+        {% endfor %}
+    </p>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ article }}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ article.titre }}</h1>
+    <p><strong>DOI :</strong>
+        {{ article }}
+    </p>
+    <p><strong>Date :</strong>
+        {{ article.date }}
+    </p>
+    <p><strong>Lien :</strong>
+        <a href="{{ article.lien }}">{{ article.lien }}</a>
+    </p>
+    <p><strong>Journal :</strong> 
+        {{ article.journal_id }}
+    </p>
+    <p><strong>{{ count.0 }}</strong>
+        {% for type in types %}
+        {{ type }} ;
+        {% endfor %}
+    </p>
+    <p><strong>{{ count.1 }}</strong>
+        {% for theme in themes %}
+        {{ theme }} ;
+        {% endfor %}
+    </p>
+    <p><strong>{{ count.2 }}</strong>
+        {% for sous_theme in sous_themes %}
+        {{ sous_theme }} ;
+        {% endfor %}
+    </p>
+    <p><strong>{{ count.3 }}</strong>
+        {% for auteur in auteurs %}
+        <a href='/auteur/{{auteur.prenom}}/{{auteur.nom}}'>{{ auteur }}</a> ;
+        {% endfor %}
+    </p>
+    <p><strong>{{ count.4 }}</strong>
+        {% for labo in labos %}
+        <a href='/labo/{{labo}}'>{{ labo }}</a> ;
+        {% endfor %}
+    </p>
+
+{% endblock %}
