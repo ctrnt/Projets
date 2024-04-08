@@ -1,0 +1,37 @@
+- Extraction de données:
+		○ Consommation en sortie de kafka
+		○ Récupération sur les db
+		○ Extraction de données externes
+			○ Définition du besoin et usage de la donnée 
+			○ ETL 
+		
+	- Stockage de données: 
+		○ Mise en place de db nécessaires
+		○ Stockage des features
+		○ Stockage de données externes
+
+Consommation en sortie de Kafka:
+		○ créer un consumer, le connecter au cluster Kafka pour récupérer les données utiles
+		○ reformater les données ? elles sont au format json ? texte brut (.txt) ?
+		○ les ajouter à la base de données déjà existante ?
+		○ les transformer en objet python (donc en gros juste json.loads())
+		○ ou stocker les données ?
+
+Récupération sur la database avec ArangoDB:
+		○ requête AQL pour extraîre les données STIX de la db
+
+Extraction de données externes:
+		○ Identifier les sources externes à faire avec Tudal
+		○ Processus ETL (Extract, Transform, Load) pour extraire, nettoyer et intégrer les données externes
+
+Mise en place de db:
+		○ stocker la nouvelle db contenant les données des 3 sources
+		○ sous quelle forme ?
+
+Stockage des features:
+		○ calculer les features en utilisant spark
+		○ stocker les nouvelles features dans des collections arangodb
+
+Stockage de données externes:
+		○ intégrer les données externes dans le data pipeline avec airflow
+		○ créer des collections dans la db pour le stockage de ces données
